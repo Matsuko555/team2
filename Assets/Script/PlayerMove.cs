@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -35,5 +36,15 @@ public class PlayerMove : MonoBehaviour
         {
             transform.Translate(new Vector3(0, 0, -MoveSpeed) * Time.deltaTime);
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+            Destroy(this.gameObject);
+        Debug.Log("Enemy");
+    }
+    private void OnDestroy()
+    {
+        SceneManager.LoadScene("End");
     }
 }

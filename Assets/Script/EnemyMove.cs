@@ -11,7 +11,8 @@ public class EnemyMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+        data = GameObject.Find("Data");
+        dataCs = data.GetComponent<Data>();
 
     }
 
@@ -26,5 +27,13 @@ public class EnemyMove : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            dataCs.score++;
+            Destroy(this.gameObject);
+        }
+    }
+
 }
