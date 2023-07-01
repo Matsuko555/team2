@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float xMin;
     [SerializeField] private float zMax;
     [SerializeField] private float zMin;
+    [SerializeField] private float PlayerHP;
 
     // Start is called before the first frame update
     void Start()
@@ -40,8 +41,17 @@ public class PlayerMove : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
+        {
+            PlayerHP--;
+        }
+
+
+        if (PlayerHP <= 0)
+        {
             Destroy(this.gameObject);
-        Debug.Log("Enemy");
+            Debug.Log("Enemy");
+        }
+
     }
     private void OnDestroy()
     {
