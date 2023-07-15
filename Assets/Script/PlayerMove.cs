@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float zMax;
     [SerializeField] private float zMin;
     [SerializeField] private float PlayerHP;
+    public Slider s;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,9 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    { 
+        s.value = PlayerHP;
+    }
         if(Input.GetKey(KeyCode.D) && this.transform.position.x < xMax)
         {
             transform.Translate(new Vector3(MoveSpeed, 0, 0) * Time.deltaTime);
@@ -38,13 +43,14 @@ public class PlayerMove : MonoBehaviour
             transform.Translate(new Vector3(0, 0, -MoveSpeed) * Time.deltaTime);
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
             PlayerHP--;
         }
-
+        
 
         if (PlayerHP <= 0)
         {
@@ -57,4 +63,5 @@ public class PlayerMove : MonoBehaviour
     {
         SceneManager.LoadScene("End");
     }
+
 }
