@@ -23,9 +23,9 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    { 
-        s.value = PlayerHP;
-    }
+    
+        s.value = PlayerHP / 5;
+    
         if(Input.GetKey(KeyCode.D) && this.transform.position.x < xMax)
         {
             transform.Translate(new Vector3(MoveSpeed, 0, 0) * Time.deltaTime);
